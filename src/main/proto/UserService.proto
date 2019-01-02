@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+//以外部类模式生成
+option java_multiple_files = true;
+//所在包名
+option java_package = "cn.dxh.practice";
+//最外层类名称
+option java_outer_classname = "PracticeService";
+
+// 定义服务
+service UserService {
+    //按id查询数据
+    rpc FindById (FindByIdRequest) returns (FindByIdResponse) {
+    }
+
+    //查询所有符合条件的数据
+    rpc FindByAge (FindByAgeRequest) returns (UserEntity) {
+    }
+
+    //删除数据
+    rpc DeleteById (DeletedByIdRequest) returns (DeletedByIdResponse) {
+    }
+}
+
+//按id查询数据参数
+message FindByIdRequest {
+    int64 id = 1;
+}
+//按id查询数据返回结果
+message FindByIdResponse {
+    string name = 2;
+    int32 age = 3;
+}
+//查询语句的条件参数
+message FindByAgeRequest {
+    int32 age = 1;
+}
+
+//删除数据的参数
+message DeletedByIdRequest {
+    int64 id = 1;
+}
+
+//删除数据的返回结果
+message DeletedByIdResponse {
+}
+
+//实例
+message UserEntity {
+    int64 id = 1;
+    string name = 2;
+    int32 age = 3;
+    string from = 4;
+    string pwd = 5;
+}
