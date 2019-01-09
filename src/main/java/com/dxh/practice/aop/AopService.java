@@ -4,7 +4,7 @@ import com.dxh.practice.annotation.AopAnnotation;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
@@ -15,7 +15,7 @@ public class AopService {
   void serviceAspect() {
   }
 
-  @Around(value = "controllerAspect()")
+  @After(value = "serviceAspect()")
   Object getLogAfter(ProceedingJoinPoint joinPoint) throws Throwable {
 //    注解说明
     String description = getServiceMethodDescription(joinPoint);
@@ -27,6 +27,7 @@ public class AopService {
     } catch (Exception e) {
       log.error("This method is fail :{}", description);
     }
+    System.out.println("aop切面");
     return proceed;
   }
 

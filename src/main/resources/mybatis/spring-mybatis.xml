@@ -20,7 +20,7 @@
 	<!-- 配置MyBatis SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property name="mapperLocations" value="classpath:mappers/*.xml"/>
+		<property name="mapperLocations" value="classpath:mappers/"/>
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
 	</bean>
 
@@ -31,7 +31,7 @@
 		<property name="sqlSessionFactory"
 			ref="sqlSessionFactory"></property>
 		-->
-		<property name="basePackage" value="com.dong.vote.mapper"/>
+		<property name="basePackage" value="com.dxh.practice.mapper"/>
 	</bean>
 
 </beans>
