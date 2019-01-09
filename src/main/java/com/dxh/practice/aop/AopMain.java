@@ -1,6 +1,6 @@
 package com.dxh.practice.aop;
 
-import com.dxh.practice.web.HelloWorld;
+import com.dxh.practice.web.aop.HelloWorld;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

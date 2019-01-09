@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 import javax.annotation.Resource
 
-@ContextConfiguration(value = ["classpath:applicationContext.xml"])
+@ContextConfiguration(value = ["classpath:applicationContext-test.xml"])
 class AnnotationServiceTest extends Specification {
 
   @Resource

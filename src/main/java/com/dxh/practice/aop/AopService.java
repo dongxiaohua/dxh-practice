@@ -5,10 +5,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.stereotype.Component;
 
+/**
+ * @author dongxiaohua
+ */
 @Slf4j
+@Aspect //定义切面类
+@Component
 public class AopService {
 
   @Pointcut(value = "@annotation(com.dxh.practice.annotation.AopAnnotation)")
