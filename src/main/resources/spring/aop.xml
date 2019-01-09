@@ -9,8 +9,7 @@
 
   <bean id="helloWorldImpl1" class="com.dxh.practice.web.HelloWorldImpl1"/>
   <bean id="helloWorldImpl2" class="com.dxh.practice.web.HelloWorldImpl2"/>
-  <bean id="timeHandler" class="com.dxh.practice.web.TimeHandler">
-  </bean>
+  <bean id="timeHandler" class="com.dxh.practice.web.TimeHandler"/>
   <bean id="logHandler" class="com.dxh.practice.web.LogHandler"/>
 
 
@@ -28,10 +27,10 @@
       <!--<aop:after-throwing method="printTime" pointcut-ref="addTime"/>-->
       <aop:around method="printTime" pointcut-ref="addTime"/>
     </aop:aspect>
-    <!--<aop:aspect id="log" ref="logHandler" order="2">-->
-    <!--<aop:pointcut id="printLog" expression="execution(* com.facishare.test.web.aop.HelloWorld.*(..))"/>-->
+    <aop:aspect id="log" ref="logHandler" order="2">
+    <aop:pointcut id="printLog" expression="execution(* com.dxh.practice.web.HelloWorld.*(..))"/>
     <!--<aop:before method="LogBefore" pointcut-ref="printLog"/>-->
-    <!--<aop:after method="LogAfter" pointcut-ref="printLog"/>-->
-    <!--</aop:aspect>-->
+    <aop:after method="LogAfter" pointcut-ref="printLog"/>
+    </aop:aspect>
   </aop:config>
 </beans>
