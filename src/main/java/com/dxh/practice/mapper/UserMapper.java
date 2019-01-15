@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * @author dongxiaohua
+ */
 public interface UserMapper {
 
   @Select("")
