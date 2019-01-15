@@ -14,7 +14,7 @@ public class AnnotationService {
   private static final int mod = 10;
 
   @AopAnnotation(description = "测试service方法")
-  public static String getName(String tenantId) {
+  public String getName(String tenantId) {
     return String.valueOf(Math.abs(tenantId.hashCode() % mod));
   }
 

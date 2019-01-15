@@ -21,7 +21,6 @@
          REUSE:执行器可能重复使用prepared statements 语句
          BATCH:执行器可以重复执行语句和批量更新 -->
     <setting name="defaultExecutorType" value="SIMPLE"/>
-    <!--设置sql超时时间（s）-->
     <setting name="defaultStatementTimeout" value="25"/>
     <!--是否启用 行内嵌套语句 defaut:false-->
     <setting name="safeRowBoundsEnabled" value="false"/>
