@@ -202,7 +202,7 @@
     </dependency>
   </dependencies>
 
-  <build>
+    <build>
     <!--grpc-->
     <extensions>
       <extension>

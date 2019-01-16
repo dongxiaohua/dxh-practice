@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd
         ">
   <context:annotation-config/>
-  <context:component-scan base-package="com.dxh.practice.service"/>
+  <context:component-scan base-package="com.dxh.practice.grpc"/>
 
   <aop:aspectj-autoproxy/>
   <import resource="classpath:mybatis/spring-mybatis.xml"/>
@@ -20,7 +20,7 @@
   <!-- 启用@AspectJ注解 -->
   <aop:config proxy-target-class="true">
     <aop:aspect ref="serviceProfiler">
-      <aop:around method="profile" pointcut="execution(* com.dxh.practice.service.*.*(..))"/>
+      <aop:around method="profile" pointcut="execution(* com.dxh.practice.grpc.*.*(..))"/>
     </aop:aspect>
   </aop:config>
 </beans>
