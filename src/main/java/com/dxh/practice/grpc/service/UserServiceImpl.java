@@ -28,6 +28,7 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
   /**
    * 简单rpc
    * 其中StreamObserver<UserEntity>是一个应答观察者,用于封装返回的信息,服务器把该信息传给客户端.请求结束要调用onCompleted()方法.
+   *
    * @param request
    * @param responseObserver
    */
@@ -35,7 +36,8 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
   public void findById(FindByIdRequest request, StreamObserver<UserEntity> responseObserver) {
     try {
       long id = request.getId();
-      responseObserver.onNext(userMapper.findById(id));
+      userMapper.findById(id);
+      responseObserver.onNext(UserEntity.newBuilder().build());
 //      请求结束
       responseObserver.onCompleted();
     } catch (Exception e) {
@@ -54,7 +56,7 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
     try {
       int age = request.getAge();
       List<UserEntity> userEntities = userMapper.findByAgs(age);
-      userEntities.forEach(responseObserver::onNext);
+      userEntities.forEach(userEntity -> responseObserver.onNext(UserEntity.newBuilder().build()));
       responseObserver.onCompleted();
     } catch (Exception e) {
       log.error("");
@@ -65,6 +67,7 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
   /**
    * 客户端流式 RPC
    * 服务端就需要一直监控客户端写入情况,因此需要一个StreamObserver接口,其中onNext方法会在客户端每次写入时调用,当写入完毕时调用onCompleted()方法
+   *
    * @param responseObserver
    * @return
    */
@@ -83,6 +86,7 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
 
       @Override
       public void onCompleted() {
+        responseObserver.onNext(DeletedByIdResponse.newBuilder().build());
         responseObserver.onCompleted();
       }
     };
@@ -109,6 +113,7 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
 
       @Override
       public void onCompleted() {
+        responseObserver.onNext(UserEntity.newBuilder().build());
         responseObserver.onCompleted();
       }
     };
