@@ -15,13 +15,12 @@
 
   <import resource="classpath:mybatis/spring-mybatis.xml"/>
 
-
   <!--通知spring使用cglib而不是jdk的来生成代理方法 AOP可以拦截到Controller
         默认的jdk动态代理是监听接口级别的，当 proxy-target-class 设置为true，则通知spring使用cglib的动态代理，拦截类级别的-->
   <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-  <!-- 启用@AspectJ注解 -->
   <bean id="serviceProfiler"/>
+  <!-- 启用@AspectJ注解 -->
   <aop:config proxy-target-class="true">
     <aop:aspect ref="serviceProfiler">
       <aop:around method="profile" pointcut="execution(* com.dxh.practice.service.*.*(..))"/>
