@@ -1,11 +1,10 @@
 package com.dxh.practice.service;
 
+import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.crypto.hash.Hash;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 根据给定字符串获取最长回文串
@@ -16,6 +15,8 @@ import java.util.Map;
 @Slf4j
 public class AlgorithmService {
   /**
+   * 最长回文串
+   * <p>
    * 根据给定字符串获取最长回文串长度
    * 难度：简单
    * <p>
@@ -50,6 +51,8 @@ public class AlgorithmService {
   }
 
   /**
+   * 两数之和
+   * <p>
    * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标
    * 难度：简单
    * <p>
@@ -75,41 +78,31 @@ public class AlgorithmService {
 
 
   /**
+   * 无重复字符串的最长子串
    * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
    *
    * @param s
    * @return
    */
   public int solution(String s) {
-    if ("".equals(s.trim())) {
-      return 1;
-    }
-    HashMap<String, Integer> map = new HashMap<>();
+    int flag = 0;
+    int length = 0;
+    int result = 0;
     for (int i = 0; i < s.length(); i++) {
-      for (int j = i + 1; j < s.length(); j++) {
-        map.put(s.substring(i, j), (j - i));
-      }
-    }
-    if (map.size() == 0) {
-      return 0;
-    }
-    HashMap<String, Integer> map2 = new HashMap<>();
-    map2.put("l", 0);
-    map.forEach((k, v) -> {
-      boolean b = false;
-      char[] chars = k.toCharArray();
-      for (int i = 0; i < chars.length; i++) {
-        for (int j = i + 1; j < chars.length; j++) {
-          if (chars[i] == chars[j]) {
-            b = true;
-          }
+      int pos = s.indexOf(s.charAt(i), flag);
+      if (pos < i) {
+        if (length > result) {
+          result = length;
         }
+        if (result >= s.length() - pos - 1) {
+          return result;
+        }
+        length = i - pos - 1;
+        flag = pos + 1;
       }
-      if (!b && map2.get("l") < k.length()) {
-        map2.put("l", k.length());
-      }
-    });
-    return map2.get("l");
+      length++;
+    }
+    return length;
   }
 
 }

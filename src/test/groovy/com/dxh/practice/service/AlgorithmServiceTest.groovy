@@ -29,7 +29,7 @@ class AlgorithmServiceTest extends Specification {
 
   def "solution"() {
     given:
-    String s = " "
+    String s = "qwewqrq"
     expect:
     println ">>>>>"
     println algorithmService.solution(s)
