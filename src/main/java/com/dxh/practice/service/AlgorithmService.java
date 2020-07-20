@@ -1,13 +1,12 @@
 package com.dxh.practice.service;
 
-import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
 /**
- * 根据给定字符串获取最长回文串
+ * 算法练习
  *
  * @author dongxiaohua
  */
@@ -20,9 +19,10 @@ public class AlgorithmService {
    * 根据给定字符串获取最长回文串长度
    * 难度：简单
    * <p>
+   * 取出每个字符的个数
    * 如果是偶数的话，全部加进去
    * 如果是奇数的话，减一加进去
-   * 如果没有加完，说明有奇数的存在，可以将奇数放在中间位置
+   * 如果没有加完，说明有个数是奇数的存在，可以取一个放在中间位置
    *
    * @param s
    */
@@ -57,6 +57,7 @@ public class AlgorithmService {
    * 难度：简单
    * <p>
    * 反向思维
+   * 用给定的目标值减数组中元素
    *
    * @return
    */
@@ -89,6 +90,8 @@ public class AlgorithmService {
     int length = 0;
     int result = 0;
     for (int i = 0; i < s.length(); i++) {
+      //string.charAt(i) 用于返回指定索引处的字符
+      //string.indexOf(str,int) 返回指定字符在指定索引开始第一次出现的索引，没有指定字符返回-1
       int pos = s.indexOf(s.charAt(i), flag);
       if (pos < i) {
         if (length > result) {
