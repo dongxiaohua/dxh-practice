@@ -5,13 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.testng.collections.Lists;
-import org.testng.collections.Sets;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -52,6 +49,9 @@ class TestService {
 
     List<String> names = pojos.stream().filter(pojo -> argList.contains(pojo.getAge())).map(EmployPojo::getName).collect(Collectors.toList());
 
+    /**
+     * 集合根据指定元素转map，key冲突时自定义结果
+     */
     Map<String, String> map = pojos.stream().collect(Collectors.toMap(EmployPojo::getName, EmployPojo::getAge, (k1, k2) -> String.valueOf((Integer.valueOf(k1) +
       Integer.valueOf(k2)))));
 

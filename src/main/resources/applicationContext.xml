@@ -15,6 +15,7 @@
   <context:component-scan base-package="com.dxh.practice.bilibili"/>
   <context:component-scan base-package="com.dxh.practice.initializing"/>
   <context:component-scan base-package="com.dxh.practice.stramFifltsService"/>
+  <context:component-scan base-package="com.dxh.practice.thread"/>
 
   <aop:aspectj-autoproxy/>
 </beans>
