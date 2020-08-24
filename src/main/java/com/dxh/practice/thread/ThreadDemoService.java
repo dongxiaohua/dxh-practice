@@ -2,7 +2,6 @@ package com.dxh.practice.thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 多线程测试
+ * CompletableFuture 需要注意的是，只能保证独立线程结果在本线程的正确性，如果想要获取所有线程结果，main线程是获取不到的，除非监听
  *
  * @author dongxiaohua
  */
