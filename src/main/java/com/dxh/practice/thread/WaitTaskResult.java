@@ -2,8 +2,6 @@ package com.dxh.practice.thread;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.function.Supplier;
 

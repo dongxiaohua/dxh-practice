@@ -15,6 +15,9 @@ class IFactoryServiceTest extends Specification {
 
   def "execute"() {
     when:
+    /**
+     * 根据类型获取对应的bean，这样就可以根据类型来走不同bean中的逻辑了
+     */
     IExecute iExecute = service.get("registered3")
     iExecute.execute("registered3")
     then:

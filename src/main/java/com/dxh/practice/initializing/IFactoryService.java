@@ -6,7 +6,7 @@ import org.testng.collections.Maps;
 import java.util.Map;
 
 /**
- * 初始化bean的测试
+ * 初始化bean的测试 将不同registered以不同key放在map中
  *
  * @author dongxiaohua
  */

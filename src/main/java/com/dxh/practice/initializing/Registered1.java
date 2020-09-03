@@ -18,6 +18,6 @@ public class Registered1 implements IExecute, InitializingBean {
 
   @Override
   public void execute(String id) {
-    System.out.println("registered1");
+    System.out.println(">>>>> registered1");
   }
 }
