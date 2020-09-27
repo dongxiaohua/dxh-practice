@@ -12,8 +12,12 @@
         ">
   <context:annotation-config/>
   <context:component-scan base-package="com.dxh.practice.service"/>
+  <context:component-scan base-package="com.dxh.practice.bilibili"/>
   <context:component-scan base-package="com.dxh.practice.initializing"/>
+  <context:component-scan base-package="com.dxh.practice.stramFifltsService"/>
   <context:component-scan base-package="com.dxh.practice.thread"/>
+  <context:component-scan base-package="com.dxh.practice.map"/>
+  <context:component-scan base-package="com.dxh.practice.factory"/>
 
   <aop:aspectj-autoproxy/>
 </beans>
