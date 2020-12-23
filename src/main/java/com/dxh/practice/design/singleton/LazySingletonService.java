@@ -1,4 +1,4 @@
-package com.dxh.practice.design;
+package com.dxh.practice.design.singleton;
 
 /**
  * 单例模式 懒汉加载

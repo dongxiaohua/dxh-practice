@@ -1,5 +1,6 @@
 package com.dxh.practice.stramFifltsService;
 
+import com.google.common.collect.ArrayListMultimap;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,10 +8,16 @@ import lombok.NoArgsConstructor;
 import org.testng.collections.Lists;
 import org.testng.collections.Maps;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
@@ -30,6 +37,15 @@ public class EmployPojo {
 }
 
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+class EmployArg {
+  private String tenantName;
+}
+
+
 class TestService {
   public static void main(String[] args) {
     List<EmployPojo> pojos = Lists.newArrayList();
@@ -39,6 +55,28 @@ class TestService {
     pojos.add(EmployPojo.builder().name("hua").age(3).address("china2").build());
     pojos.add(EmployPojo.builder().name("hua").age(3).address("china3").build());
     pojos.add(EmployPojo.builder().name("dongxiaohua").age(28).address("china").build());
+
+
+    ArrayListMultimap multimap = ArrayListMultimap.create();
+    pojos.forEach(pojo -> multimap.put(pojo.getName(), pojo.getAge()));
+
+    //    List<EmployPojo> studentDistinct2List = pojos.stream().filter(TestService.distinctByKey(EmployPojo::getName)).collect(Collectors.toList());
+
+    List<EmployPojo> studentDistinctList = pojos
+      .stream()
+      .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(t -> t.getName()))), ArrayList::new));
+
+    Map<String, Boolean> fiflterMap = Maps.newHashMap();
+    List<EmployPojo> eps = pojos.stream().filter(it -> {
+      Boolean bl = fiflterMap.get(it.getName());
+      if (bl == null) {
+        fiflterMap.put(it.getName(), true);
+        return true;
+      }
+      return !bl;
+    }).collect(Collectors.toList());
+
+    List<EmployArg> employArgs = pojos.stream().map(it -> EmployArg.builder().tenantName(it.getName()).build()).collect(Collectors.toList());
 
     List<String> argList = Lists.newArrayList("25", "9", "10");
 
@@ -84,5 +122,11 @@ class TestService {
 
     maps.stream().filter(m -> m.get("2") > 3).collect(Collectors.toSet());
 
+  }
+
+
+  public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+    Set<Object> seen = ConcurrentHashMap.newKeySet();
+    return t -> seen.add(keyExtractor.apply(t));
   }
 }
