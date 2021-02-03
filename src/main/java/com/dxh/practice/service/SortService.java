@@ -1,9 +1,6 @@
 package com.dxh.practice.service;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 /**
  * 数组或排序相关算法
@@ -11,59 +8,7 @@ import java.util.Map;
  * @author dongxiaohua
  */
 @Service
-public class ArrayOrSortService {
-
-
-  /**
-   * 获取数组中最大值和最小值
-   * 取双元素法
-   *
-   * @param arr
-   * @return
-   */
-  public Map gainMaxAndMin(int[] arr) {
-    int max = arr[0];
-    int min = arr[0];
-
-    int len = arr.length;
-
-    for (int i = 1; i < len - 1; i = i + 2) {
-      if (i + 1 > len) {
-        if (arr[i] > max) {
-          max = arr[i];
-        }
-        if (arr[i] < min) {
-          min = arr[i];
-        }
-      }
-
-      if (arr[i] > arr[i + 1]) {
-        if (arr[i] > max) {
-          max = arr[i];
-        }
-        if (arr[i + 1] < min) {
-          min = arr[i + 1];
-        }
-      }
-      if (arr[i] < arr[i + 1]) {
-        if (arr[i + 1] > max) {
-          max = arr[i + 1];
-        }
-        if (arr[i] < min) {
-          min = arr[i];
-        }
-      }
-    }
-
-    int finalMax = max;
-    int finalMin = min;
-    return new HashedMap() {
-      {
-        put("max", finalMax);
-        put("min", finalMin);
-      }
-    };
-  }
+public class SortService {
 
 
   /**
@@ -141,7 +86,7 @@ public class ArrayOrSortService {
    * 从第一个记录开始，依次对相邻的两个记录进行比较，当前面的记录大于后面的记录时交换位置
    * 例：[36,25,48,12,25,65,43,57]
    * <p>
-   * 1. [25,36,48,12,25,65,43,57]
+   * 1. [25,36,12,25,48,43,57,65]
    * 2. [25,12,25,36,43,48] 57,65
    * 3. [12,25,36,43] 48,57,65
    * 4. [12,25,25,36] 43,48,57,65
@@ -165,7 +110,7 @@ public class ArrayOrSortService {
   }
 
   /**
-   * 冒泡2
+   * 冒泡排序2
    *
    * @param array
    */
@@ -181,4 +126,104 @@ public class ArrayOrSortService {
     }
   }
 
+
+  /**
+   * 归并排序
+   *
+   * @param array
+   * @param p
+   * @param r
+   */
+  public void mergeSort(int[] array, int p, int r) {
+    if (p < r) {
+      int q = (p + r) / 2;
+      mergeSort(array, p, q);
+      mergeSort(array, q + 1, r);
+      merge(array, p, q, r);
+    }
+  }
+
+  /**
+   * 归并排序实现
+   *
+   * @param array
+   * @param p
+   * @param q
+   * @param r
+   */
+  private static void merge(int[] array, int p, int q, int r) {
+    int i, j, k, n1, n2;
+    n1 = q - p + 1;
+    n2 = r - q;
+    int[] L = new int[n1];
+    int[] R = new int[n2];
+    for (i = 0, k = p; i < n1; i++, k++) {
+      L[i] = array[k];
+    }
+    for (i = 0, k = q + 1; i < n2; i++, k++) {
+      R[i] = array[k];
+    }
+
+    for (k = p, i = 0, j = 0; i < n1 && j < n2; k++) {
+      if (L[i] > R[j]) {
+        array[k] = L[i];
+        i++;
+      } else {
+        array[k] = R[j];
+        j++;
+      }
+    }
+    if (i < n1) {
+      for (j = i; j < n1; j++, k++) {
+        array[k] = L[j];
+      }
+    }
+    if (j < n2) {
+      for (i = j; i < n2; i++, k++) {
+        array[k] = R[i];
+      }
+    }
+  }
+
+
+  /**
+   * 快速排序
+   * 1. 选定pivot中心轴
+   * 2. 将大于pivot的数字放在pivot的右边
+   * 3. 将小于pivot的数字放在pivot的左边
+   * 4. 分别对左右子序列重复前三步
+   * <p>
+   * 注：选定pivot后，同时确定了L，R（0，length-1）
+   * 让R，L位置的元素分别跟pivot元素比较，直到R，L位置重合
+   *
+   * @param array
+   */
+  public void quickSort(int[] array, int l, int r) {
+    int i, j;
+    int index;
+    if (l >= r) {
+      return;
+    }
+    i = l;
+    j = r;
+    index = array[i];
+    while (i < j) {
+      while (i < j && array[i] >= index) {
+        j--;
+      }
+      if (i < j) {
+        array[i++] = array[j];
+      }
+      while (i < j && array[i] < index) {
+        i++;
+      }
+      if (i < j) {
+        array[j--] = array[i];
+      }
+    }
+    array[i] = index;
+    quickSort(array, l, i - 1);
+    quickSort(array, i + 1, r);
+
+  }
 }
