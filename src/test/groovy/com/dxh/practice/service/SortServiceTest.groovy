@@ -22,6 +22,15 @@ class SortServiceTest extends Specification {
     println arrayService.gainMaxAndMin(arr)
   }
 
+  def "合并有序数组"() {
+    given:
+    int[] arr1 = [1, 2, 4, 4, 6, 8, 9]
+    int[] arr2 = [0, 1, 3, 6, 7]
+    expect:
+    println ">>>>>"
+    println arrayService.mergeArr(arr1, arr2)
+  }
+
   def "selectSort - 选择排序"() {
     given:
     int[] a = [5, 4, 9, 8, 7, 6, 0, 1, 2, 3]

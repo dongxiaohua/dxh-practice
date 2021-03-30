@@ -5,6 +5,7 @@ import com.google.common.collect.Sets;
 import org.apache.commons.collections.map.HashedMap;
 import org.testng.collections.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,6 +18,9 @@ import java.util.stream.Collectors;
  */
 public class DailyService {
   public static void main(String[] args) {
+
+    String[] value = new String[10];
+
     Map<String, List<String>> map = new HashedMap() {
       {
         put("1", Lists.newArrayList("1", "2"));

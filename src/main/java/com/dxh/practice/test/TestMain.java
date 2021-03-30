@@ -4,7 +4,10 @@ import lombok.Builder;
 import lombok.Data;
 import org.apache.commons.collections.CollectionUtils;
 import org.testng.collections.Lists;
+import retrofit2.http.Url;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collection;
 
 public class TestMain {
@@ -53,4 +56,36 @@ public class TestMain {
 class Field {
   private String apiName;
   private Integer fieldNum;
+}
+
+
+class X {
+  Y y = new Y();
+  public X(){
+    System.out.println("X");
+  }
+}
+
+
+class Y {
+  public Y(){
+    System.out.println("Y");
+  }
+}
+
+
+class Z extends X {
+  Y y = new Y();
+  public Z(){
+    System.out.println("Z");
+  }
+
+  public static void main(String[] args) {
+    try {
+      URL url = new URL("qweqweq");
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    }
+    new Z();
+  }
 }

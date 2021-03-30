@@ -13,7 +13,7 @@ public class SortService {
 
   /**
    * 选择排序
-   * 第一轮，从第一个元素开始，与每个元素对比，符合条件的则替换位置，最终让最小的放在第一位
+   * 第一轮，从第一个元素开始，与每个元素对比，符合条件的则替换位置(提前定义min存储下标和内容)，最终让最小的放在第一位
    * 第二轮，排除第一轮的最小值，重复第一轮操作
    * 直到最后一个元素
    * <p>
@@ -27,20 +27,20 @@ public class SortService {
    * @return
    */
   public void selectSort(int[] a) {
-    int temp = 0;
-    int flag = 0;
+    int min_value;
+    int min_index;
     int n = a.length;
     for (int i = 0; i < n; i++) {
-      temp = a[i];
-      flag = i;
+      min_value = a[i];
+      min_index = i;
       for (int j = i + 1; j < n; j++) {
-        if (a[j] < temp) {
-          temp = a[j];
-          flag = j;
+        if (a[j] < min_value) {
+          min_value = a[j];
+          min_index = j;
 
-          if (flag != i) {
-            a[flag] = a[i];
-            a[i] = temp;
+          if (min_index != i) {
+            a[min_index] = a[i];
+            a[i] = min_value;
           }
         }
       }
