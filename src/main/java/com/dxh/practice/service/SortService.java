@@ -200,30 +200,38 @@ public class SortService {
    */
   public void quickSort(int[] array, int l, int r) {
     int i, j;
-    int index;
-    if (l >= r) {
-      return;
-    }
     i = l;
     j = r;
-    index = array[i];
-    while (i < j) {
-      while (i < j && array[i] >= index) {
-        j--;
+    if (l < r) {
+      //确定中心轴
+      int pivot = array[i];
+      while (i < j) {
+        // r位置大于等于pivot值，则指针向左移动，找到比pivot小的位置
+        while (i < j && array[j] >= pivot) {
+          j--;
+        }
+        //当前j位置值小于pivot
+        if (i < j) {
+          // 将当前j位置的值放到i位置，并且移动左侧i指针
+          array[i] = array[j];
+          i++;
+        }
+        // l位置值小于等于pivot值则移动指针（找到大于pivot值的位置）
+        while (i < j && array[i] <= pivot) {
+          i++;
+        }
+        if (i < j) {
+          //将当前i的值放到j的位置,并且移动右侧j指针
+          array[j] = array[i];
+          j--;
+        }
       }
-      if (i < j) {
-        array[i++] = array[j];
-      }
-      while (i < j && array[i] < index) {
-        i++;
-      }
-      if (i < j) {
-        array[j--] = array[i];
-      }
+      //当i=j重合，则停止 把pivot放到正确的位置
+      array[i] = pivot;
+      //重复左侧列
+      quickSort(array, l, i - 1);
+      //重复右侧列
+      quickSort(array, i + 1, r);
     }
-    array[i] = index;
-    quickSort(array, l, i - 1);
-    quickSort(array, i + 1, r);
-
   }
 }
