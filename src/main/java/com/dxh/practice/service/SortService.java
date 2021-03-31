@@ -203,30 +203,30 @@ public class SortService {
     i = l;
     j = r;
     if (l < r) {
-      //确定中心轴
+      //1. 确定中心轴
       int pivot = array[i];
       while (i < j) {
-        // r位置大于等于pivot值，则指针向左移动，找到比pivot小的位置
+        // 2. r位置大于等于pivot值，则指针向左移动，找到比pivot小的位置
         while (i < j && array[j] >= pivot) {
           j--;
         }
-        //当前j位置值小于pivot
+        // 3. 当前j位置值小于pivot
         if (i < j) {
-          // 将当前j位置的值放到i位置，并且移动左侧i指针
+          // 4. 将当前j位置的值放到i位置，并且移动左侧i指针
           array[i] = array[j];
           i++;
         }
-        // l位置值小于等于pivot值则移动指针（找到大于pivot值的位置）
+        // 5. l位置值小于等于pivot值则移动指针（找到大于pivot值的位置）
         while (i < j && array[i] <= pivot) {
           i++;
         }
         if (i < j) {
-          //将当前i的值放到j的位置,并且移动右侧j指针
+          //6. 将当前i的值放到j的位置,并且移动右侧j指针
           array[j] = array[i];
           j--;
         }
       }
-      //当i=j重合，则停止 把pivot放到正确的位置
+      // 7. 当i=j重合，则停止 把pivot放到正确的位置
       array[i] = pivot;
       //重复左侧列
       quickSort(array, l, i - 1);
