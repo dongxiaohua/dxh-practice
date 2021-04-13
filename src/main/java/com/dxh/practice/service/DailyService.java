@@ -4,6 +4,7 @@ import com.dxh.practice.stramFifltsService.EmployPojo;
 import com.google.common.collect.Sets;
 import org.apache.commons.collections.map.HashedMap;
 import org.testng.collections.Lists;
+import org.testng.collections.Maps;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,11 @@ import java.util.stream.Collectors;
  */
 public class DailyService {
   public static void main(String[] args) {
+
+    Long l = 123L;
+    Map<String,Object> maps = Maps.newHashMap();
+    maps.put("l",l);
+    Object l1 = maps.get("l");
 
     String[] value = new String[10];
 
