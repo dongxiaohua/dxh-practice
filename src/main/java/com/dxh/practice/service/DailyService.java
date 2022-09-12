@@ -145,6 +145,5 @@ public class DailyService {
       System.out.println(true);
     }
 
-
   }
 }
