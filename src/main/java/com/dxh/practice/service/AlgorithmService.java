@@ -68,8 +68,8 @@ public class AlgorithmService {
       int value = target - nums[i];
       //如果map中存在此差值，则返回
       if (map.containsKey(value)) {
-        res[1] = map.get(value);
-        res[0] = i;
+        res[0] = map.get(value) + 1;
+        res[1] = i + 1;
         break;
       }
       map.put(nums[i], i);
