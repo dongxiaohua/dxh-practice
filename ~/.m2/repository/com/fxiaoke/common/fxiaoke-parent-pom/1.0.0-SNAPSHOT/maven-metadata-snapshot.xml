@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.fxiaoke.common</groupId>
+  <artifactId>fxiaoke-parent-pom</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20190112.024019</timestamp>
+      <buildNumber>241</buildNumber>
+    </snapshot>
+    <lastUpdated>20190112023938</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0.0-20190112.024019-241</value>
+        <updated>20190112024019</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
