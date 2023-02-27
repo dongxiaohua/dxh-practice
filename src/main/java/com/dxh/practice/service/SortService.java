@@ -130,41 +130,44 @@ public class SortService {
   /**
    * 归并排序
    *
+   * 先递归分组，分出两个数组，分别以l,middle和middle+1,r分组
+   *
    * @param array
-   * @param p
+   * @param l
    * @param r
    */
-  public void mergeSort(int[] array, int p, int r) {
-    if (p < r) {
-      int q = (p + r) / 2;
-      mergeSort(array, p, q);
-      mergeSort(array, q + 1, r);
-      merge(array, p, q, r);
+  public void mergeSort(int[] array, int l, int r) {
+    if (l < r) {
+      int middle = (l + r) / 2;
+      mergeSort(array, l, middle);
+      mergeSort(array, middle + 1, r);
+      merge(array, l, middle, r);
     }
   }
 
   /**
    * 归并排序实现
    *
+   *
    * @param array
-   * @param p
-   * @param q
+   * @param l
+   * @param middle
    * @param r
    */
-  private static void merge(int[] array, int p, int q, int r) {
-    int i, j, k, n1, n2;
-    n1 = q - p + 1;
-    n2 = r - q;
-    int[] L = new int[n1];
-    int[] R = new int[n2];
-    for (i = 0, k = p; i < n1; i++, k++) {
+  private static void merge(int[] array, int l, int middle, int r) {
+    int i, j, k, l1, l2;
+    l1 = middle - l + 1;
+    l2 = r - middle;
+    int[] L = new int[l1];
+    int[] R = new int[l2];
+    for (i = 0, k = l; i < l1; i++, k++) {
       L[i] = array[k];
     }
-    for (i = 0, k = q + 1; i < n2; i++, k++) {
+    for (i = 0, k = middle + 1; i < l2; i++, k++) {
       R[i] = array[k];
     }
 
-    for (k = p, i = 0, j = 0; i < n1 && j < n2; k++) {
+    for (k = l, i = 0, j = 0; i < l1 && j < l2; k++) {
       if (L[i] > R[j]) {
         array[k] = L[i];
         i++;
@@ -173,13 +176,13 @@ public class SortService {
         j++;
       }
     }
-    if (i < n1) {
-      for (j = i; j < n1; j++, k++) {
+    if (i < l1) {
+      for (j = i; j < l1; j++, k++) {
         array[k] = L[j];
       }
     }
-    if (j < n2) {
-      for (i = j; i < n2; i++, k++) {
+    if (j < l2) {
+      for (i = j; i < l2; i++, k++) {
         array[k] = R[i];
       }
     }
